@@ -1,0 +1,21 @@
+
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  host: localhost
+  username: sufyaniqbal
+  password: s$$4102481$$S
+development:
+  <<: *default
+  database: eShope_development
+
+test:
+  <<: *default
+  database: eShope_test
+
+production:
+  <<: *default
+  database: eShope_production
+  username: eShope
+  password: <%= ENV['ESHOPE_DATABASE_PASSWORD'] %>
