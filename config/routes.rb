@@ -7,5 +7,6 @@ Rails.application.routes.draw do
   resources :products
   resources :cart_items
   devise_for :users
+  resources :orders
 
 end
