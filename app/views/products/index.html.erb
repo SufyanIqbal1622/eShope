@@ -2,11 +2,10 @@
 
 <% @products.each do |product| %>
 
-  <p> <span> <%= product.category_id %> </span> <span> <%= product.name %> </span> <span> Available Pices <%= product.quantity %> </span> <span> Price <%= product.price %> </span> </p>
+  <p> <span> <%= product.category_id %> </span> <span> <%= product.name %> </span> <span> <%= product.quantity %> </span>
   <% if product.image.attached? %>
- <%= image_tag product.image, style: "width:300px; disply:block" %>
+ <%= image_tag product.image, style: "width:400px; disply:block" %>
 <% end %>
-
 
 <% end %>
 
