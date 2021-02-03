@@ -7,4 +7,7 @@ class CartItemsController < ApplicationController
   def show
     @cart_item = CartItem.find.find(params[:id])
   end
+
+
+
 end

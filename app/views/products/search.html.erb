@@ -1,0 +1,8 @@
+<h3>Search Result</h3>
+
+  <% @results.each do |result| %>
+        <%= result.name %><br>
+        <% if result.image.attached? %>
+         <%= image_tag result.image, style: "width:300px; disply:block" %>
+       <% end %>
+  <% end %>
