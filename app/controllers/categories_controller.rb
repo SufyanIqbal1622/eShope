@@ -1,26 +1,13 @@
 class CategoriesController < ApplicationController
-  before_action :set_category, only: [:show, :edit ]
+
 
   def index
-    @categories = Category.all
-  end
-
-  def edit
+    @categories = Category.all.with_attached_image
 
   end
 
-  def new
-
-  end
-
-
-  private
-
-  def set_category
+  def show
     @category = Category.find(params[:id])
   end
 
-  def category_params
-    params.require(:category).permit(:name)
-  end
 end

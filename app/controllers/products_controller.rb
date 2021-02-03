@@ -1,26 +1,13 @@
 class ProductsController < ApplicationController
 
   def index
-    @products = Product.all
+    # @products = Product.all
+    @products = Product.all.with_attached_image
   end
 
   def show
+    @prduct = Product.find(params[:id])
 
   end
-
-  def edit
-
-  end
-
-  def update
-  end
-
-  def create
-  end
-
-  def destroy
-  end
-
-  private
 
 end

@@ -1,5 +1,15 @@
 <h1> Products </h1>
 
 <% @products.each do |product| %>
-  <p> <span> <%= product.category_id %> </span> <span> <%=product.name %> </span> <span> <%= product.quantity %>
+
+  <p> <span> <%= product.category_id %> </span> <span> <%= product.name %> </span> <span> <%= product.quantity %> </span>
+  <% if product.image.attached? %>
+ <%= image_tag product.image, style: "width:400px; disply:block" %>
 <% end %>
+
+
+<% end %>
+
+<%# TODO Home: shows Store image and some description and some popular products %>
+
+
