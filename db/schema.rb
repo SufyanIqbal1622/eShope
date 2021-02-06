@@ -50,24 +50,24 @@ ActiveRecord::Schema.define(version: 2021_02_06_112038) do
   end
 
   create_table "order_items", force: :cascade do |t|
-    t.bigint "product_id_id"
-    t.bigint "order_id_id"
+    t.bigint "product_id"
+    t.bigint "order_id"
     t.decimal "unit_price"
     t.integer "quantity"
     t.integer "total"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["order_id_id"], name: "index_order_items_on_order_id_id"
-    t.index ["product_id_id"], name: "index_order_items_on_product_id_id"
+    t.index ["order_id"], name: "index_order_items_on_order_id"
+    t.index ["product_id"], name: "index_order_items_on_product_id"
   end
 
   create_table "orders", force: :cascade do |t|
-    t.bigint "user_id_id"
+    t.bigint "user_id"
     t.decimal "subtotal"
     t.decimal "total"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id_id"], name: "index_orders_on_user_id_id"
+    t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
   create_table "products", force: :cascade do |t|
