@@ -1,0 +1,89 @@
+
+///////////////////////////////////////order_item.rb
+belongs_to :order
+  belongs_to :product
+  # before_save :set_unit_price
+  # before_save :set_total
+
+  def unit_price
+    if persisted?
+      self[:unit_price]
+    else
+      product.price
+    end
+  end
+
+  def total
+    unit_price*quantity
+  end
+
+  private
+
+  def set_unit_price
+    self[:unit_price] = unit_price
+  end
+
+  def set_total
+    self[:total] = total*quantity
+  end
+
+  /////////////////////////////////////////order.rb///////////////
+
+    belongs_to :user
+  has_many :order_items
+  has_many :products
+
+  before_save :set_subtotal
+
+  def subtotal
+    order_items.collect{|order_item| order_item.valid? ? order_item.unit_price*order_item.quantity : 0 }.sum
+  end
+
+
+
+  private
+  def set_subtotal
+    self[:subtotal] = subtotal
+  end
+//////////////////////////////home_controller.rb
+
+@order_item = current_order.order_items.new # in  index
+private
+  def order_params
+    params.require(:order).permit(:user_id)
+  end
+
+  ////// index.html.erb of home_controller
+
+  <td>
+           <%= form_for @order_item do [f] %>
+          <% f.hidden_field :product_id, :value => product.id %>
+          <% f.hidden_field :quantity, :value => 1, :min => 1 %>
+          <%= f.submit "Add to Cart" %>
+          <%end %>
+        </td>
+
+
+/////////////////order_item_controller
+def create
+    @rder = current_order
+    @order_items = @order.order_items.new[order_params]
+    @order.save
+    session[:order_id] = @order.id
+  end
+
+  private
+    def order_params
+      params.require(:order_item).permit(:product_id, :quantity)
+    end
+
+
+////////////////Applicationhelper
+
+def current_order
+    if !session[:order_id].nil?
+      Order.find(session[:order_id])
+    else
+      Order.new[:current_user.id]
+    end
+  end

@@ -1,14 +1,13 @@
 <h1> Products </h1>
 
 <% @products.each do |product| %>
-
-  <p> <span> <%= product.category_id %> </span> <span> <%= product.name %> </span> <span> <%= product.quantity %> </span>
+<div class="row">
+<div class="col-md-4", style= " display:flex; flex: 1 1 1">
+  <span> <%= product.category_id %> </span> <span> <%= product.name %> </span> <span> <%= product.quantity %> </span>
   <% if product.image.attached? %>
- <%= image_tag product.image, style: "width:400px; disply:block" %>
+    <%= image_tag product.image, style: "width:200px; disply:block" %>
+    <%= button_to "Add #{product.name} to order", order_items_path(:product_id => product.id) %>
+  <%end %>
 <% end %>
 
-<% end %>
-
-<%# TODO Home: shows Store image and some description and some popular products %>
-
-
+</div>
