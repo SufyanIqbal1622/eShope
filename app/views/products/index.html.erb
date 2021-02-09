@@ -2,11 +2,11 @@
 
 <% @products.each do |product| %>
 <div class="row">
-<div class="col-md-4", style= " display:flex; flex: 1 1 1">
-  <span> <%= product.category_id %> </span> <span> <%= product.name %> </span> <span> <%= product.quantity %> </span>
+<div class="col-md-4", style= " display:flex; flex-wrap: wrap">
   <% if product.image.attached? %>
     <%= image_tag product.image, style: "width:200px; disply:block" %>
-    <%= button_to "Add #{product.name} to order", order_items_path(:product_id => product.id) %>
+    <br>
+    <%= button_to "Add #{product.name} to order", order_items_path(:product_id => product.id), method: :post %>
   <%end %>
 <% end %>
 

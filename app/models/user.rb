@@ -4,4 +4,13 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  has_many :orders
+
+  def cart
+    orders.last || orders.create
+  end
+
+  def new_cart
+    orders.create
+  end
 end
