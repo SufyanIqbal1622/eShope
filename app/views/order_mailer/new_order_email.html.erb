@@ -9,31 +9,31 @@
 
   <% @order = @user.cart %>
     <div >
-  <table  >
-    <thead >
-      <tr>
-        <th>Item</th>
-        <th>Price</th>
-        <th>Quantity</th>
-        <th>Total Price</th>
-        <th>  </th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @order.order_items.sort_by { |h | h[:id] }.each do |order_item| %>
-        <tr>
-          <td> <%= order_item.product.name %></td>
-          <td> <%= number_to_currency(order_item.product.price) %></td>
-          <td><%= order_item.quantity %></td>
-          <td> <%= number_to_currency(order_item.total_price) %> </td>
-          <td >
-          </td>
-        </tr>
-      <%end %>
-    </tbody>
-  </table>
-</div>
-<div >
+      <table  >
+        <thead >
+          <tr>
+            <th>Item</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Total Price</th>
+            <th>  </th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @order.order_items.sort_by { |h | h[:id] }.each do |order_item| %>
+            <tr>
+              <td> <%= order_item.product.name %></td>
+              <td> <%= number_to_currency(order_item.product.price) %></td>
+              <td><%= order_item.quantity %></td>
+              <td> <%= number_to_currency(order_item.total_price) %> </td>
+              <td >
+              </td>
+            </tr>
+          <%end %>
+        </tbody>
+      </table>
+    </div>
+  <div >
   <h3>Your Totale bill is : <%= number_to_currency(@order.sub_total) %></h3>
 
 </div>
