@@ -1,7 +1,16 @@
 class ApplicationController < ActionController::Base
+before_action :configure_permitted_parameters, if: :devise_controller?
 before_action :authenticate_user!
 protect_from_forgery with: :exception
 before_action :current_order
+
+protected
+
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :email, :phone_number, :address, :password])
+    devise_parameter_sanitizer.permit(:account_update, keys:[ :name, :email, :phone_number, :address, :password, :current_password ])
+  end
+
 
   private
     def current_order
