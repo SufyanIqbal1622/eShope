@@ -1,15 +1,22 @@
-
-<div class = ".container-fluid ">
-     <ul class="list-inline">
-        <% @products.each do |product| %>
-        <li class="list-inline-item" >
-          <% if product.image.attached? %>
-            <%= image_tag product.image, style: "width:200px; disply:block" %>
+<div class="row">
+  <div class = ".container-fluid ">
+      <ul class="list-inline">
+          <% @products.each do |product| %>
+          <li class="list-inline-item col-md-3 col-sm-4 mx-1" >
+            <% if product.image.attached? %>
             <br>
-            <%= button_to "Add #{product.name} to Cart", order_items_path(:product_id => product.id), method: :post %>
-          <%end %>
-        </li>
-      <% end %>
-      </ul>
+              <%= number_to_currency(product.price) %>
+              <%= image_tag product.image, style: "width:200px; disply:block" %>
+              <div class="my-1">
+                <%= product.name %>
+                <br>
+
+                <%= button_to "Add to Cart", order_items_path(:product_id => product.id), method: :post %>
+              </div>
+            <%end %>
+          </li>
+        <% end %>
+        </ul>
+  </div>
 </div>
 

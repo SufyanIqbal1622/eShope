@@ -1,4 +1,33 @@
 RailsAdmin.config do |config|
+  config.model 'Order' do
+    list do
+      scopes [:cart, :processed, nil]
+
+      configure :created_at do
+        hide
+      end
+
+      configure :updated_at do
+        hide
+      end
+
+      configure :order_items do
+        hide
+      end
+
+      configure :products do
+        hide
+      end
+
+      configure :order_status do
+        hide
+      end
+
+      configure :details do
+      end
+    end
+   end
+
 
   ### Popular gems integration
 
