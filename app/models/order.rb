@@ -3,6 +3,14 @@ class Order < ApplicationRecord
   has_many :order_items, dependent: :destroy
   has_many :products, through: :order_items
   enum order_status: [:pending, :completed]
+  before_save :is_empty_fun
+  after_create :created_fun
+  after_update :update_fun
+  around_save :aroundssav_fun
+
+
+
+
 
   scope :cart, -> {where("order_status = 0")}
   scope :processed, ->{where("order_status = 1")}
@@ -21,5 +29,26 @@ class Order < ApplicationRecord
       data << [oi.product.name, oi.quantity].compact.join(' = ')
     end
     return data.to_s.humanize
+  end
+
+  def is_empty_fun
+     puts "=*="*50
+    puts order_items.length
+
+  end
+
+  def update_fun
+    puts "=="*50
+    puts "Your order is updated"
+  end
+
+  def created_fun
+     puts "=="*50
+    puts "Your order is created and this item is alson added to your cart  "
+  end
+
+  def aroundsv_fun
+    puts "****"*50
+    puts "Your order in saving process"
   end
 end
