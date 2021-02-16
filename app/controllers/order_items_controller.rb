@@ -14,7 +14,7 @@ before_action :authenticate_user!
       @order_item.sku_id = "sku#{chosen_product.id}"
       @order_item.quantity = @order_item.quantity.to_i + 1
     end
-    flash[:notice] = "This product is added successfuy."
+    flash[:notice] = "#{@order_item.product.name}  added to cart."
     @order_item.save
     redirect_to root_path(current_order)
   end
@@ -23,7 +23,7 @@ before_action :authenticate_user!
     @order_item = OrderItem.find(params[:id])
     @order_item.destroy
     redirect_to order_path(current_user.cart.id)
-     flash[:notice] = "Item Removed "
+     flash[:notice] = "#{@order_item.product.name}  Removed "
   end
 
   def add_quantity

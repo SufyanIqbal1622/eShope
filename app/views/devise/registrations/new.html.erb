@@ -1,59 +1,56 @@
 
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card bg-transparent border border-success p-2 mb-5 ">
+        <h2>Sign up</h2>
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|  %>
+          <%= render "devise/shared/error_messages", resource: resource %>
 
-<div class="row g-3 m-5  " >
-  <div class= "col-md-7 mx-auto p-0 ">
-    <h2>Sign up</h2>
-    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|  %>
-      <%= render "devise/shared/error_messages", resource: resource %>
+          <div class= "field col-md-11 ">
+                <%= f.text_field :name, autofocus: true, class:"form-control ",  placeholder:" Name " %>
+          </div>
 
-      <div class= "field col-md-6 mx-1"><%= f.label :name %><br />
-            <%= f.text_field :name, autofocus: true, class:"form-control " %>
-      </div>
-      <br>
-      <div class="field col-md-6 mx-1">
-        <%= f.label :email %><br />
-        <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control", id:"inputEmail4" %>
-      </div>
-      <br>
-      <div class="field col-md-6 mx-1" >
-        <%= f.label :phone_number %><br />
-        <%= f.text_field :phone_number, autofocus: true, class:"form-control"%>
-      </div>
-      <br>
-      <div class="field col-md-6 mx-1">
-        <%= f.label :address_city %><br />
-        <%= f.text_field :address_city, autofocus: true, class:"form-control" %>
-      </div>
-      <br>
-      <div class="field col-md-6 mx-1">
-        <%= f.label :address_country %><br />
-        <%= f.text_field :address_country, autofocus: true, class:"form-control" %>
-      </div>
-      <br>
-      <div class="field col-md-6 mx-1 ">
-        <%= f.label :address_line %><br />
-        <%= f.text_field :address_line, autofocus: true, class:"form-control" %>
-      </div>
-        <br>
+          <div class="field col-md-11 ">
+           <br />
+            <%= f.email_field :email, autofocus: true, autocomplete: "email",  placeholder:"Emile Address" , class:"form-control", id:"inputEmail4" %>
+          </div>
+          <br>
+          <div class="field col-md-11 " >
+            <%= f.text_field :phone_number, autofocus: true, class:"form-control",  placeholder:"Phone Number" %>
+          </div>
+          <br>
+          <div class="field col-md-11 ">
+            <%= f.text_field :address_city, autofocus: true, class:"form-control",  placeholder:"City" %>
+          </div>
+          <br>
+          <div class="field col-md-11 ">
+            <%= f.text_field :address_country, autofocus: true, class:"form-control",  placeholder:"Country" %>
+          </div>
+          <br>
+          <div class="field col-md-11  ">
+            <%= f.text_field :address_line, autofocus: true, class:"form-control",  placeholder:"Street Address" %>
+          </div>
+            <br>
 
-      <div class="field col-md-6 mx-1">
-        <%= f.label :password %>
-        <% if @minimum_password_length %>
-        <em>(<%= @minimum_password_length %> characters minimum)</em>
-        <% end %><br />
-        <%= f.password_field :password, autocomplete: "new-password", class:"form-control" %>
+          <div class="field col-md-11 ">
+            <% if @minimum_password_length %>
+            <em>(<%= @minimum_password_length %> characters minimum)</em>
+            <% end %><br />
+            <%= f.password_field :password, autocomplete: "new-password", class:"form-control password",  placeholder:"Password"  %>
+          </div>
+          <br>
+          <div class="field col-md-11 ">
+            <%= f.label :password_confirmation %><br />
+            <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"form-control",  placeholder:"Conferm Password" %>
+          </div>
+          <div class="actions mx-1 ">
+          <br>
+            <%= f.submit "Sign up", class:"btn btn-primary" %>
+          </div>
+        <% end %>
+        <%= render "devise/shared/links" %>
       </div>
-      <br>
-      <div class="field col-md-6 mx-1">
-        <%= f.label :password_confirmation %><br />
-        <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"form-control" %>
-      </div>
-      <div class="actions mx-1 ">
-      <br>
-        <%= f.submit "Sign up", class:"btn btn-primary" %>
-      </div>
-    <% end %>
-    <%= render "devise/shared/links" %>
+    </div>
   </div>
 </div>
-

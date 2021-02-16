@@ -11,17 +11,27 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-  <body>
-    <div class="my-2">  <%= render "home/navbar" %> </div>
-    <%= javascript_include_tag 'https://checkout.stripe.com/checkout.js' %>
-    <div class= "jambotron jambotron-fluid" >
+  <body >
 
+    <%= javascript_include_tag 'https://checkout.stripe.com/checkout.js' %>
+    <div class= ".container contaner-fluid " >
+     <div >  <%= render "shared/navbar" %> </div>
+
+      <div class= ".container-fluid px-4 " id="main">
+      <%if flash[:notice].present? %>
         <p class="notice bg-success p-2 "><%= notice %></p>
+        <% end %>
+        <% if flash[:alert].present? %>
         <p class="alert bg-danger p-2"><%= alert %></p>
-      <div class= ".container-fluid px-4">
+        <% end %>
         <%= yield %>
       </div>
+       <div >  <%= render "shared/footter" %> </div>
     </div>
+    <script>
+      setTimeout("$('.alert').fadeOut(3000)")
+      setTimeout("$('.notice').fadeOut(3000)")
+    </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   </body>
