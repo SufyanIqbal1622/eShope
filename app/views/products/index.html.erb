@@ -1,13 +1,22 @@
-<h1> Products </h1>
-
-<% @products.each do |product| %>
 <div class="row">
-<div class="col-md-4", style= " display:flex; flex-wrap: wrap">
-  <% if product.image.attached? %>
-    <%= image_tag product.image, style: "width:200px; disply:block" %>
-    <br>
-    <%= button_to "Add #{product.name} to order", order_items_path(:product_id => product.id), method: :post %>
-  <%end %>
-<% end %>
+  <div class = ".container-fluid ">
+      <ul class="list-inline">
+          <% @products.each do |product| %>
+          <li class="list-inline-item col-md-3 col-sm-4 mx-1" >
+            <% if product.image.attached? %>
+            <br>
+              <%= number_to_currency(product.price) %>
+              <%= image_tag product.image, style: "width:200px; disply:block" %>
+              <div class="my-1">
+                <%= product.name %>
+                <br>
 
+                <%= button_to "Add to Cart", order_items_path(:product_id => product.id), method: :post %>
+              </div>
+            <%end %>
+          </li>
+        <% end %>
+        </ul>
+  </div>
 </div>
+

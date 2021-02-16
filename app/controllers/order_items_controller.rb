@@ -3,7 +3,6 @@ class OrderItemsController < ApplicationController
   def create
     chosen_product = Product.find(params[:product_id])
     current_order = current_user.cart
-      current_order.inspect
       if current_order.products.include?(chosen_product)
       @order_item = current_order.order_items.find_by(product: chosen_product)
       @order_item.quantity = @order_item.quantity.to_i + 1

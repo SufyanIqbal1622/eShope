@@ -3,11 +3,12 @@ class HomeController < ApplicationController
 
   def index
     @products = Product.all.with_attached_image
-
-
   end
 
   def about
   end
+   def header
+
+   end
 
 end
