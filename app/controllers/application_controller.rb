@@ -1,8 +1,11 @@
 class ApplicationController < ActionController::Base
 before_action :configure_permitted_parameters, if: :devise_controller?
-before_action :authenticate_user!
 protect_from_forgery with: :exception
 before_action :current_order
+
+around_action :around_actionn_fun
+
+
 
 protected
 
@@ -13,6 +16,13 @@ protected
 
 
   private
+
+    def around_actionn_fun
+      puts "==="*30
+      yield
+      puts "==="*30
+    end
+
     def current_order
       if session[:order_id]
         order = Order.find_by(:id => session[:order_id])

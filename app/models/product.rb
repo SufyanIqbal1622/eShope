@@ -8,11 +8,11 @@ class Product < ApplicationRecord
   after_validation :after_validation_fun
 
   before_update :before_update_fun
-  around_update :around_update_fun
+  # around_update :around_update_fun
   after_update :after_update_fun
 
   before_create :before_create_fun
-  around_create :around_create_fun
+  # around_create :around_create_fun
   after_create  :after_create_fun
 
   before_save :before_save_fun
@@ -20,8 +20,8 @@ class Product < ApplicationRecord
   after_save :after_save_fun
 
   before_destroy :before_destroy_fun
-  around_destroy :around_destroy_fun
-  # after_destroy :after_destroy_fun
+  # around_destroy :around_destroy_fun
+   after_destroy :after_destroy_fun
 
   after_commit :after_commit_fun
   after_rollback :after_rollback_fun
