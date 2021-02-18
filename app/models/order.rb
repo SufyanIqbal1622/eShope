@@ -2,15 +2,13 @@ class Order < ApplicationRecord
   belongs_to :user
   has_many :order_items, dependent: :destroy
   has_many :products, through: :order_items
-  enum order_status: [:pending, :completed]
+
   before_save :is_empty_fun
   after_create :created_fun
   after_update :update_fun
   around_save :aroundssav_fun
 
-
-
-
+  enum order_status: [:pending, :completed]
 
   scope :cart, -> {where("order_status = 0")}
   scope :processed, ->{where("order_status = 1")}

@@ -1,5 +1,6 @@
 class OrderItemsController < ApplicationController
 before_action :authenticate_user!
+
   def create
     chosen_product = Product.find(params[:product_id])
     current_order = current_user.cart
