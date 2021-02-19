@@ -8,7 +8,7 @@ gem "font-awesome-rails"
 gem 'rails_admin', '2.0.2'
 gem 'bootstrap', '~> 5.0.0.beta1'
 gem 'jquery-rails'
-
+gem 'stripe-rails'
 gem 'image_processing', '~> 1.2'
 gem 'mini_magick'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

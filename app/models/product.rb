@@ -15,7 +15,7 @@ class Product < ApplicationRecord
 
 #   before_create :before_create_fun
 #   # around_create :around_create_fun
-#   after_create  :after_create_fun
+   after_create  :after_create_fun
 
 #   before_save :before_save_fun
 #   # around_save :around_save_fun
@@ -63,10 +63,16 @@ class Product < ApplicationRecord
 #     puts "Around Creating an Product "
 #   end
 
-#   def after_create_fun
-#       puts "++==" * 100
-#     puts "After creating a product"
-#   end
+  def after_create_fun
+    Stripe::Product.create({id: "myfirstapp#{id}", type: 'good', name: name})
+    Stripe::SKU.create({
+    id:"sku#{id}",
+    price: price.to_i,
+    currency: "usd",
+    inventory: {type: 'finite', quantity: quantity},
+    product: "myfirstapp#{id}",
+  })
+  end
 
 #   def before_update_fun
 #     puts "++"*50

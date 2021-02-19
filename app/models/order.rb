@@ -6,7 +6,7 @@ class Order < ApplicationRecord
   before_save :is_empty_fun
   after_create :created_fun
   after_update :update_fun
-  around_save :aroundssav_fun
+  # around_save :aroundssav_fun
 
   enum order_status: [:pending, :completed]
 
@@ -41,8 +41,24 @@ class Order < ApplicationRecord
   end
 
   def created_fun
-     puts "=="*50
+    puts "=="*50
     puts "Your order is created and this item is alson added to your cart  "
+    puts id
+    puts user.name
+    puts user.email
+    puts user.address
+
+    Stripe::Order.create({
+      currency: 'usd',
+      email: user.email,
+      items: [
+        {type: 'sku', parent: 'sku41'},
+      ],
+      shipping: {
+        name: user.name,
+        address: user.address,
+      },
+      })
   end
 
   def aroundsv_fun

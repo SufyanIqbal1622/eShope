@@ -75,4 +75,9 @@ Rails.application.configure do
   # config.action_cable.disable_request_forgery_protection = true
   config.action_mailer.delivery_method = :letter_opener
   config.action_mailer.perform_deliveries = true
+
+  config.stripe.debug_js = true  # use stripe-debug.js
+  config.stripe.secret_key = Rails.application.credentials.stripe[:development][:secret_key]
+  config.stripe.publishable_key = Rails.application.credentials.stripe[:development][:publishable_key]
+
 end
