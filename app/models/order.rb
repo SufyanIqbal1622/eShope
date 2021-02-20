@@ -3,14 +3,7 @@ class Order < ApplicationRecord
   has_many :order_items, dependent: :destroy, inverse_of: :order
   has_many :products, through: :order_items
 
-<<<<<<< HEAD
   before_save :before_save_fun
-=======
-  before_save :is_empty_fun
-  after_create :created_fun
-  after_update :update_fun
-  # around_save :aroundssav_fun
->>>>>>> Stripe configured, product and sku also config f.S
 
   enum order_status: [:pending, :completed]
 

@@ -7,6 +7,5 @@ class AddColumnToUsers < ActiveRecord::Migration[6.1]
     add_column :users, :address_country, :string
     add_column :users, :address_line, :string
     add_column :users, :card_number, :string
-
   end
 end
