@@ -71,6 +71,7 @@ ActiveRecord::Schema.define(version: 2021_02_10_073644) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "user_id"
+    t.integer "order_status", default: 0
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
@@ -94,7 +95,14 @@ ActiveRecord::Schema.define(version: 2021_02_10_073644) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "name"
     t.string "phone_number"
-    t.string "address"
+    t.string "address_city"
+    t.string "address_country"
+    t.string "address_line"
+    t.string "card_number"
+    t.string "card_type"
+    t.integer "cvc"
+    t.integer "expires_month"
+    t.integer "expires_year"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

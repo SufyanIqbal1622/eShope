@@ -13,10 +13,47 @@
   <div class="field" ><%= f.label :phone_number %><br />
     <%= f.text_field :phone_number, autofocus: true %>
   </div>
-  <div class="field">
-    <%= f.label :address %><br />
-    <%= f.text_field :address, autofocus: true %>
+
+   <div class="field">
+    <%= f.label :address_city %><br />
+    <%= f.text_field :address_city, autofocus: true %>
   </div>
+
+   <div class="field">
+    <%= f.label :address_country %><br />
+    <%= f.text_field :address_country, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :address_line %><br />
+    <%= f.text_field :address_line, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :card_number %><br />
+    <%= f.text_field :card_number, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :card_type %><br />
+    <%= f.text_field :card_type, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :cvc %><br />
+    <%= f.text_field :cvc, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :expires_month %><br />
+    <%= f.text_field :expires_month, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :expires_year %><br />
+    <%= f.text_field :expires_year, autofocus: true %>
+  </div>
+
 
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
@@ -30,8 +67,6 @@
       <em><%= @minimum_password_length %> characters minimum</em>
     <% end %>
   </div>
-
-
 
   <div class="field">
     <%= f.label :password_confirmation %><br />

@@ -1,12 +1,18 @@
 Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/gaon', as: 'rails_admin'
+
+  scope '/checkout' do
+    post 'create', to: 'checkout#create', as: 'checkout_create'
+    get  'cancel', to: 'checkout#cencel', as: 'checkout_cencel'
+    get  'success', to: 'checkout#success', as: 'checkout_success'
+  end
   # root 'home#index'
   get 'home/about'
   get '/search' => 'products#search', :as => 'search_product'
   root 'products#index'
   post 'orders/:id' => "order#show", as: "order"
   delete 'orders/:id' => "orders#destroy"
- post 'orders/:id/proceed' => "orders#proceed", as: "order_proceed"
+  post 'orders/:id/proceed' => "orders#proceed", as: "order_proceed"
   post 'order_items' => "order_items#create"
   delete 'order_items/:id' => "order_items#destroy"
   post 'order_items/:id/add' => "order_items#add_quantity", as: "order_item_add"

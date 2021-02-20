@@ -46,19 +46,22 @@ class Order < ApplicationRecord
     puts id
     puts user.name
     puts user.email
-    puts user.address
 
-    Stripe::Order.create({
-      currency: 'usd',
-      email: user.email,
-      items: [
-        {type: 'sku', parent: 'sku41'},
-      ],
-      shipping: {
-        name: user.name,
-        address: user.address,
-      },
-      })
+
+    # Stripe::Order.create({
+    #   currency: 'usd',
+    #   email: user.email,
+    #   items: [
+    #     {type: 'sku', parent: 'sku41'},
+    #   ],
+    #   shipping: {
+    #     name: user.name,
+    #     address: {
+    #   line1: "#{address}",
+
+    # },
+    #   },
+    #   })
   end
 
   def aroundsv_fun

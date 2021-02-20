@@ -10,8 +10,37 @@ around_action :around_actionn_fun
 protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :email, :phone_number, :address, :password])
-    devise_parameter_sanitizer.permit(:account_update, keys:[ :name, :email, :phone_number, :address, :password, :current_password ])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [
+      :name,
+      :email,
+      :phone_number,
+      :address_city,
+      :address_country,
+      :address_line,
+      :card_number,
+      :card_type,
+      :cvc,
+      :expires_month,
+      :expires_year,
+      :password,
+      :card_type,
+      ])
+    devise_parameter_sanitizer.permit(:account_update, keys:[
+      :name,
+      :email,
+      :phone_number,
+      :address,
+      :password,
+      :address_city,
+      :address_country,
+      :address_line,
+      :card_number,
+      :card_type,
+      :cvc,
+      :expires_month,
+      :expires_year,
+      :current_password
+      ])
   end
 
 
