@@ -1,12 +1,10 @@
 class Order < ApplicationRecord
   belongs_to :user
-  has_many :order_items, dependent: :destroy
+  has_many :order_items, dependent: :destroy, inverse_of: :order
   has_many :products, through: :order_items
 
-  before_save :is_empty_fun
-  after_create :created_fun
-  after_update :update_fun
-  # around_save :aroundssav_fun
+
+  before_save :before_save_fun
 
   enum order_status: [:pending, :completed]
 
@@ -29,43 +27,28 @@ class Order < ApplicationRecord
     return data.to_s.humanize
   end
 
-  def is_empty_fun
-     puts "=*="*50
-    puts order_items.length
+  def before_save_fun
+    data = []
 
-  end
+    order_items.each do |order_item|
+      data << {type: 'sku', parent: "#{order_item.sku_id}", quantity: "#{order_item.quantity}"}
+    end
 
-  def update_fun
-    puts "=="*50
-    puts "Your order is updated"
-  end
+    if (data.length > 0)
 
-  def created_fun
-    puts "=="*50
-    puts "Your order is created and this item is alson added to your cart  "
-    puts id
-    puts user.name
-    puts user.email
-
-
-    # Stripe::Order.create({
-    #   currency: 'usd',
-    #   email: user.email,
-    #   items: [
-    #     {type: 'sku', parent: 'sku41'},
-    #   ],
-    #   shipping: {
-    #     name: user.name,
-    #     address: {
-    #   line1: "#{address}",
-
-    # },
-    #   },
-    #   })
-  end
-
-  def aroundsv_fun
-    puts "****"*50
-    puts "Your order in saving process"
+      Stripe::Order.create({
+        currency: 'usd',
+        email: user.email,
+        items: data,
+        shipping: {
+          name: user.name,
+          address: {
+            line1: "#{user.address_line}",
+            city: "#{user.address_city}",
+            country: "#{user.address_country}",
+          },
+        },
+      })
+    end
   end
 end

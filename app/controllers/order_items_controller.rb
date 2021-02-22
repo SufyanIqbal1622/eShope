@@ -11,6 +11,7 @@ before_action :authenticate_user!
       @order_item = OrderItem.new
       @order_item.order = current_order
       @order_item.product = chosen_product
+      @order_item.sku_id = "sku#{chosen_product.id}"
       @order_item.quantity = @order_item.quantity.to_i + 1
     end
     flash[:notice] = "This product is added successfuy."

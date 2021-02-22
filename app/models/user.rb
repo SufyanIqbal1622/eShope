@@ -5,9 +5,10 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :orders
 
-
-  validate :check_length
-  validate :validphonenumber
+  validates :name, length: { minimum: 2 }
+  validates :card_number, length: { is: 16 }
+  validates :card_number, length: { is: 11 }
+  validates :password, length: { in: 6..20 }
 
   before_validation :bf_validation
   after_validation :af_validation
@@ -45,18 +46,6 @@ class User < ApplicationRecord
   end
 
 private
-  def check_length
-    unless card_number.size == 16
-      errors.add(:column, "length must be 16")
-    end
-  end
-
-  def validphonenumber
-    number = self.phone_number.length
-    if number < 11
-      errors.add(:phone_number, " Complete number is require ")
-    end
-  end
 
   def bf_validation
     puts "There is a New User who want to Validate himself "
