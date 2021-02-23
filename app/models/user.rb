@@ -30,13 +30,13 @@ class User < ApplicationRecord
       email: "#{email}",
       phone: "#{phone_number}",
       shipping: {
-      name: "#{name}",
-      address: {
-        line1: "#{address_line}",
-        city: "#{address_city}",
-        country: "#{address_country}",
+        name: "#{name}",
+        address: {
+          line1: "#{address_line}",
+          city: "#{address_city}",
+          country: "#{address_country}",
+        },
       },
-    },
     })
 
     Stripe::Customer.create_source(
@@ -54,6 +54,4 @@ private
   def af_validation
     puts " Welcome to eShope, now you are a valiud user  "
   end
-
-
 end

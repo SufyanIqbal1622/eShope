@@ -3,7 +3,6 @@ class Order < ApplicationRecord
   has_many :order_items, dependent: :destroy, inverse_of: :order
   has_many :products, through: :order_items
 
-
   before_save :before_save_fun
 
   enum order_status: [:pending, :completed]
