@@ -5,6 +5,10 @@ import * as ActiveStorage from "@rails/activestorage";
 import "channels";
 import "@fortawesome/fontawesome-free/css/all";
 require("./bootstrap");
+require("./jquery");
+require("./jquery-ujs");
+require("./popper");
+require("./bootstrap-sprockets");
 
 Rails.start();
 Turbolinks.start();

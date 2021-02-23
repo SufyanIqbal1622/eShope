@@ -24,9 +24,6 @@
         <% if flash[:alert].present? %>
         <p class="alert bg-danger p-2"><%= alert %></p>
         <% end %>
-          <div>
-<% render"shared/slider" %>
-</div>
         <%= yield %>
       </div>
        <div >  <%= render "shared/footter" %> </div>

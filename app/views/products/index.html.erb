@@ -1,17 +1,19 @@
-
+<!-- <div class="  slider">
+  <%= render"shared/slider" %>
+</div> -->
 <div class="row  mt-5 ">
   <div class = ".container-fluid ">
       <ul class="list-inline ">
         <% @products.each do |product| %>
-        <li class="list-inline-item col-lg-2 col-md-3 col-sm-4 " >
+        <li class="list-inline-item col-lg-2 col-md-3 col-sm-4 my-1 " >
           <% if product.image.attached? %>
-          <br>
+
             <%= image_tag product.image, class:"img-fluid " %>
 
             <div class="my-1">
               <span> <%= product.name %> // <%= number_to_currency(product.price) %> </span>
               <br>
-              <%= button_to "Add to Cart", order_items_path(:product_id => product.id), method: :post %>
+              <%= button_to "Add to Cart", order_items_path(:product_id => product.id), method: :post , class:"btn btn-outline-success"%>
             </div>
           <%end %>
         </li>

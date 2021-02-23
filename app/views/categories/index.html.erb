@@ -1,10 +1,17 @@
-<h1>All Categories</h1>
-<h4>Category Name </h4>
-  <% @categories.each do |category| %>
-    <p> <%=  category.name %></p>
-    <% if category.image.attached? %>
-    <%= image_tag category.image, style: "width:200px; display:block" %>
-  <% end %>
 
-<% end %>
+<div class="row  mt-5 ">
+  <div class = ".container-fluid ">
+    <h1>All Categories</h1>
+      <ul class="list-inline ">
+        <% @categories.each do |category| %>
+        <li class="list-inline-item col-lg-2 col-md-3 col-sm-4 " >
+            <% if category.image.attached? %>
+              <%= image_tag category.image,  class:"img-fluid " %>
+            <% end %>
+            <div> <%=  category.name %> </div>
+        </li>
+      </ul>
+    <% end %>
+  </div>
+</div>
 

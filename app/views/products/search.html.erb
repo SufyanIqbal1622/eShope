@@ -5,7 +5,7 @@
           <% @results.each do |result| %>
           <li class="list-inline-item col-lg-2 col-md-3 col-sm-4 mx-5 " >
                <% if result.image.attached? %>
-                <%= image_tag result.image, style: "width:300px; disply:block" %>
+                <%= image_tag result.image, class:"img-fluid" %>
                 <div class="my-1">
                   <span><%= result.name %>
                   <%= number_to_currency(result.price) %> </span>

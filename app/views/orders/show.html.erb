@@ -39,7 +39,8 @@
 <%= stripe_javascript_tag %>
 <div class="d-flex justify-content-center">
   <h3>Sub total: <%= number_to_currency(@order.sub_total) %></h3>
-  <%= button_to "Checkout to Proceed ", order_proceed_path(:id => @order.id), method: :post, class:"btn btn-outline-success" %>
+    <button id="checkout-button" class="btn btn-outline-success">Checkout</button>
+  <!-- <%= button_to "Checkout to Proceed ", order_proceed_path(:id => @order.id), method: :post, class:"btn btn-outline-success" %> -->
   </div>
 </div>
 
