@@ -100,10 +100,6 @@ ActiveRecord::Schema.define(version: 2021_02_20_130247) do
     t.string "address_country"
     t.string "address_line"
     t.string "card_number"
-    t.string "card_type"
-    t.integer "cvc"
-    t.integer "expires_month"
-    t.integer "expires_year"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

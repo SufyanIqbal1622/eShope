@@ -17,13 +17,7 @@ protected
       :address_city,
       :address_country,
       :address_line,
-      :card_number,
-      :card_type,
-      :cvc,
-      :expires_month,
-      :expires_year,
       :password,
-      :card_type,
       ])
     devise_parameter_sanitizer.permit(:account_update, keys:[
       :name,
@@ -34,11 +28,6 @@ protected
       :address_city,
       :address_country,
       :address_line,
-      :card_number,
-      :card_type,
-      :cvc,
-      :expires_month,
-      :expires_year,
       :current_password
       ])
   end

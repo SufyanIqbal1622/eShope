@@ -6,8 +6,7 @@ class User < ApplicationRecord
   has_many :orders
 
   validates :name, length: { minimum: 2 }
-  validates :card_number, length: { is: 16 }
-  validates :card_number, length: { is: 11 }
+  validates :phone_number, length: { is: 11 }
   validates :password, length: { in: 6..20 }
 
   before_validation :bf_validation
@@ -39,10 +38,6 @@ class User < ApplicationRecord
       },
     })
 
-    Stripe::Customer.create_source(
-       "customer#{id}",
-         {source: "tok_#{card_type}",},
-       )
   end
 
 private

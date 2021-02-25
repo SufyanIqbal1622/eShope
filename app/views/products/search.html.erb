@@ -1,8 +1,20 @@
-<h3>Search Result</h3>
+<div class="row ">
+  <div class = ".container-fluid ">
+    <ul class="list-inline ">
+      <h3>Search Result</h3>
+          <% @results.each do |result| %>
+          <li class="list-inline-item col-lg-2 col-md-3 col-sm-4 mx-5 " >
+               <% if result.image.attached? %>
+                <%= image_tag result.image, style: "width:300px; disply:block" %>
+                <div class="my-1">
+                  <span><%= result.name %>
+                  <%= number_to_currency(result.price) %> </span>
+                    <br>
+                  <%= button_to "Add to Cart", order_items_path(:product_id => result.id), method: :post %>
+              </div>
+              <% end %>
+          <% end %>
+      </ul>
+  </div>
+</div>
 
-  <% @results.each do |result| %>
-        <%= result.name %><br>
-        <% if result.image.attached? %>
-         <%= image_tag result.image, style: "width:300px; disply:block" %>
-       <% end %>
-  <% end %>
