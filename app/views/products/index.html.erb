@@ -1,19 +1,24 @@
-<!-- <div class="  slider">
+<div class="  slider">
   <%= render"shared/slider" %>
-</div> -->
+</div>
+
 <div class="row  mt-5 ">
   <div class = ".container-fluid ">
       <ul class="list-inline ">
         <% @products.each do |product| %>
-        <li class="list-inline-item col-lg-2 col-md-3 col-sm-4 my-1 " >
+        <li class="list-inline-item col-lg-2 col-md-3 col-sm-4 my-1" >
           <% if product.image.attached? %>
 
-            <%= image_tag product.image, class:"img-fluid " %>
+          <div class="btn btn-outline-light  ">
+            <span class="text-info"><%= product.name %> </span>
+            <%= image_tag product.image, class:"img-fluid "  %>
 
+             <span class="text-info"> <%= number_to_currency(product.price) %></span>
+             <span class= "btn-group btn-group-sm"> <%= button_to "+", order_items_path(:product_id => product.id), method: :post , class:"btn btn-outline-warning"%>
+
+              <%= link_to '!nfo', product_path(:id => product.id), method: :get, class:"btn btn-outline-info display-block-inline" %> </span>
+            </div>
             <div class="my-1">
-              <span> <%= product.name %> // <%= number_to_currency(product.price) %> </span>
-              <br>
-              <%= button_to "Add to Cart", order_items_path(:product_id => product.id), method: :post , class:"btn btn-outline-success"%>
             </div>
           <%end %>
         </li>

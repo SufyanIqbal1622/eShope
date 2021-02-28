@@ -1,8 +1,8 @@
 <p id="notice"><%= notice %></p>
-
+<div class="container">
 <p>
-  <strong>Category_id:</strong>
-  <%= @product.category_id %>
+  <strong>Category:</strong>
+  <%= @product.category.name %>
 </p>
 
 <p>
@@ -16,11 +16,16 @@
 </p>
 
 <% if @product.image.attached? %>
- <%= image_tag @product.image, style: "width:400px; disply:block" %>
-<% end %>
+<div class="col-md-4 col-sm-6">
+ <%= image_tag @product.image, class:"img-fluid" %>
+  </div>
+  <span class="text-info"> <%= number_to_currency(@product.price) %></span>
+<span class= "btn-group btn-group-sm"> <%= button_to "+", order_items_path(:product_id => @product.id), method: :post , class:"btn btn-outline-warning"%>
 
+<% end %>
+<br>
+<%= link_to 'Back', products_path, class:"btn btn-outline-info" %>
 
 
 </div>
 
-<%= link_to 'Back', products_path %>
