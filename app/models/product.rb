@@ -1,6 +1,7 @@
 class Product < ApplicationRecord
   attr_accessor :remove_main_image
   belongs_to :category
+  has_many :order_items , dependent: :destroy
   has_one_attached :image
 
   validates :name, length:{minimum: 3}

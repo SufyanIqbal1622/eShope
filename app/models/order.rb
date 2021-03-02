@@ -21,7 +21,7 @@ class Order < ApplicationRecord
   def details
     data = []
     order_items.each do |oi|
-      data << [oi.product.name, oi.quantity].compact.join(' = ')
+       data << [oi.product&.name, oi.quantity].compact.join(' = ')
     end
     return data.to_s.humanize
   end
