@@ -1,1 +1,7 @@
 <P>We are here to Impliment the full eShope</p>
+<h3>Sub total: <%= number_to_currency(@order.sub_total) %></h3>
+<%= current_user.cart.order_items.each do |f| %>
+<%= f.product.name %>
+<%= f.quantity %>
+<%= f.total_price %>
+<%end %>

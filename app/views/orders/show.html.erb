@@ -1,50 +1,53 @@
 
 <div class="container-fluid   ">
-<div class="table-responsive">
-  <h2>Cart</h2>
-  <table class="table ">
-    <thead class=" bg-dark text-info thead-borderedless">
-      <tr>
-        <th>Item</th>
-        <th>Price</th>
-        <th>Quantity</th>
-        <th>Total Price</th>
-        <th>  </th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @order.order_items.sort_by { |h | h[:id] }.each do |order_item| %>
+  <div class="table-responsive">
+    <h2>Cart</h2>
+    <table class="table ">
+      <thead class=" bg-dark text-info thead-borderedless">
         <tr>
-          <td> <%= order_item.product.name %></td>
-          <td> <%= number_to_currency(order_item.product.price) %></td>
-          <td><%= order_item.quantity %></td>
-          <td> <%= number_to_currency(order_item.total_price) %> </td>
-          <td >
-            <div class = "btn-group btn-group-sm ">
-                <%= button_to " + ", order_item_add_path(:id => order_item.id), method: :post, class:" btn btn-sm btn-outline-secondary mx-1" %>
-                <%if order_item.quantity > 1 %>
-                  <%= button_to " - ", order_item_reduce_path(:id => order_item.id), method: :post, class:" btn btn-sm btn-outline-secondary mx-1" %>
-                <% else %>
-                  <%= form_for order_item, method: :delete do |f| %>
-                  <%= f.submit "Delete", class:" btn btn-sm btn-outline-danger fas fa-trash-alt " %>
-                  <% end %>
-                <% end %>
-              </div>
-          </td>
+          <th>Item</th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th>Total Price</th>
+          <th>  </th>
         </tr>
-      <%end %>
-    </tbody>
-  </table>
-</div>
-<%= stripe_javascript_tag %>
-<div class="d-flex justify-content-center">
-  <h3>Sub total: <%= number_to_currency(@order.sub_total) %></h3>
-    <button id="checkout-button" class="btn btn-outline-success">Checkout</button>
-  <!-- <%= button_to "Checkout to Proceed ", order_proceed_path(:id => @order.id), method: :post, class:"btn btn-outline-success" %> -->
-  <script>
-    let stripe =Stripe("<%=Rails.application.credentials.stripe[:pulic_key]%>");
-    let
-  </script>
+      </thead>
+      <tbody>
+        <% @order.order_items.sort_by { |h | h[:id] }.each do |order_item| %>
+          <tr>
+            <td> <%= order_item.product.name %></td>
+            <td> <%= number_to_currency(order_item.product.price) %></td>
+            <td><%= order_item.quantity %></td>
+            <td> <%= number_to_currency(order_item.total_price) %> </td>
+            <td >
+              <div class = "btn-group btn-group-sm ">
+                  <%= button_to " + ", order_item_add_path(:id => order_item.id), method: :post, class:" btn btn-sm btn-outline-secondary mx-1" %>
+                  <%if order_item.quantity > 1 %>
+                    <%= button_to " - ", order_item_reduce_path(:id => order_item.id), method: :post, class:" btn btn-sm btn-outline-secondary mx-1" %>
+                  <% else %>
+                    <%= form_for order_item, method: :delete do |f| %>
+                    <%= f.submit "Delete", class:" btn btn-sm btn-outline-danger fas fa-trash-alt " %>
+                    <% end %>
+                  <% end %>
+                </div>
+            </td>
+          </tr>
+        <%end %>
+      </tbody>
+    </table>
+  </div>
+  <%= stripe_javascript_tag %>
+  <div class="d-flex justify-content-center">
+    <h3>Sub total: <%= number_to_currency(@order.sub_total) %></h3>
+    <%= form_tag charges_path do %>
+
+      <% if @order.order_items.length > 0 %>
+       <script src="https://checkout.stripe.com/checkout.js" class="stripe-button  "  data-key="<%= Rails.configuration.stripe[:publishable_key] %>" data-description="Order Pyments" data-amount="#{@order.sub_total}" data-locale="auto"></script>
+      <% else %>
+      <button class="btn btn-outline-danger"> Cart is Empty </button>
+      <% end %>
+
+    <% end %>
   </div>
 </div>
 

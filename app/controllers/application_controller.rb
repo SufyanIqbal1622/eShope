@@ -3,9 +3,6 @@ before_action :configure_permitted_parameters, if: :devise_controller?
 protect_from_forgery with: :exception
 before_action :current_order
 
-around_action :around_actionn_fun
-
-
 
 protected
 
@@ -35,25 +32,19 @@ protected
 
   private
 
-    def around_actionn_fun
-      puts "==="*30
-      yield
-      puts "==="*30
-    end
-
-    def current_order
-      if session[:order_id]
-        order = Order.find_by(:id => session[:order_id])
-        if order.present?
-          @current_order = order
-        else
-          session[:order_id] = nil
-        end
-      end
-
-      if session[:order_id] == nil
-        @current_order = Order.create
-        session[:order_id] = @current_order.id
+  def current_order
+    if session[:order_id]
+      order = Order.find_by(:id => session[:order_id])
+      if order.present?
+        @current_order = order
+      else
+        session[:order_id] = nil
       end
     end
+
+    if session[:order_id] == nil
+      @current_order = Order.create
+      session[:order_id] = @current_order.id
+    end
+  end
 end

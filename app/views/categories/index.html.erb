@@ -4,7 +4,7 @@
     <h1>All Categories</h1>
       <ul class="list-inline ">
         <% @categories.each do |category| %>
-        <li class="list-inline-item col-lg-2 col-md-3 col-sm-4 " >
+        <li class="list-inline-item col-lg-3 col-md-4 col-sm-6 " >
             <% if category.image.attached? %>
               <%= image_tag category.image,  class:"img-fluid " %>
             <% end %>

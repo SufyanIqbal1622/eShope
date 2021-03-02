@@ -48,6 +48,7 @@ class Order < ApplicationRecord
           },
         },
       })
+      OrderMailer.new_order_email(user).deliver_now
     end
   end
 end
